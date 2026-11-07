@@ -5,10 +5,20 @@
   name: "light";
   default: true;
 
-  --color-primary: #16a34a;
-  --color-secondary: #065f46;
+    --color-primary: #065F46;
+  --color-secondary: #16A34A;
+  --color-accent: #DCFCE7;
 
-  --color-accent: #dcfce7;
+  --color-base-100: #FFFFFF;
+  --color-base-200: #F8FAFC;
+  --color-base-300: #E2E8F0;
+  --color-base-content: #1F2937;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+
 }
 
 body {

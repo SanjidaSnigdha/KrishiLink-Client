@@ -32,7 +32,9 @@ const Banner = () => {
           Connect with farmers, traders and consumers in one digital space{" "}
         </p>
       </div>
-       
+      <button className="btn btn-primary absolute right-5 mt-5">
+        Explore Crops
+      </button>
     </div>
   );
 };

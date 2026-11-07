@@ -12,6 +12,7 @@ import Register from "./components/Register/Register.jsx";
 import MyCrops from "./components/MyCrops/MyCrops.jsx";
 import MyBids from "./components/MyBids/MyBids.jsx";
 import MyPosts from "./components/MyBids/MyBids.jsx";
+import CropDetails from "./components/CropDetails/CropDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,12 @@ const router = createBrowserRouter([
       {
         path: "myBids",
         element: MyBids,
+      },
+      {
+        path: "cropDetails/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/crops/${params.id}`),
+        Component: CropDetails,
       },
     ],
   },

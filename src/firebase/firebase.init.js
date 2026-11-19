@@ -7,12 +7,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAQee3Tq3yu7TyGaYdWokRtgvhP2NmbxqQ",
-  authDomain: "krishilink-fcf59.firebaseapp.com",
-  projectId: "krishilink-fcf59",
-  storageBucket: "krishilink-fcf59.firebasestorage.app",
-  messagingSenderId: "106339963534",
-  appId: "1:106339963534:web:de188ecafdc0a78b60efdf",
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase

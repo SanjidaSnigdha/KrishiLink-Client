@@ -13,6 +13,7 @@ import MyCrops from "./components/MyCrops/MyCrops.jsx";
 import MyBids from "./components/MyBids/MyBids.jsx";
 import MyPosts from "./components/MyBids/MyBids.jsx";
 import CropDetails from "./components/CropDetails/CropDetails.jsx";
+import PrivateRoute from "./Routes/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,11 +34,19 @@ const router = createBrowserRouter([
       },
       {
         path: "myCrops",
-        element: MyCrops,
+        element: (
+          <PrivateRoute>
+            <MyCrops></MyCrops>
+          </PrivateRoute>
+        ),
       },
       {
         path: "myBids",
-        element: MyBids,
+        element: (
+          <PrivateRoute>
+            <MyBids></MyBids>
+          </PrivateRoute>
+        ),
       },
       {
         path: "cropDetails/:id",

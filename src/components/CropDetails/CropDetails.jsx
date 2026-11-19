@@ -26,11 +26,13 @@ const CropDetails = () => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     const bid = e.target.bid.value;
-    console.log(name, email, bid);
+     console.log(name, email, bid);
+
     const newBid = {
-      crops: cropsId,
+      crops: cropId,
       buyer_name: name,
       buyer_email: email,
+      buyer_image: user?.photoURL,
       bid_price: bid,
       status: "pending",
     };
@@ -52,6 +54,12 @@ const CropDetails = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+
+          // add the new bid to the state
+          newBid._id = data.insertedId;
+          const newBids = [...bids, newBid];
+          newBids.sort((a, b) => b.bid_price - a.bid_price);
+          setBids(newBids);
         }
       });
   };
@@ -116,8 +124,50 @@ const CropDetails = () => {
       {/* bids for this crop */}
       <div>
         <h1 className="font-bold text-4xl text-center text-primary font-inter">
-          Bids for this crops: <span className="text-[#16A34A]">{bids.length}</span>
+          Bids for this crops:{" "}
+          <span className="text-[#16A34A]">{bids.length}</span>
         </h1>
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>SL No.</th>
+                <th>Buyer Name</th>
+                <th>Buyer Email</th>
+                <th>Bid Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              {bids.map((bid, index) => (
+                <tr>
+                  <th>{index + 1}</th>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 w-12">
+                          <img
+                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                      <div className="font-bold">{bid.buyer_name}</div>
+                    </div>
+                  </td>
+                  <td>{bid.buyer_email}</td>
+                  <td>{bid.bid_price}</td>
+                  <th>
+                    <button className="btn btn-ghost btn-xs">details</button>
+                  </th>
+                </tr>
+              ))}
+              {/* row 2 */}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

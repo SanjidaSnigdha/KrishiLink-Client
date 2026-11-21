@@ -14,6 +14,7 @@ import MyBids from "./components/MyBids/MyBids.jsx";
 import MyPosts from "./components/MyBids/MyBids.jsx";
 import CropDetails from "./components/CropDetails/CropDetails.jsx";
 import PrivateRoute from "./Routes/PrivateRoute.jsx";
+import CreateACrop from "./components/CreateACrop/CreateACrop.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,19 @@ const router = createBrowserRouter([
         path: "cropDetails/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/crops/${params.id}`),
-        Component: CropDetails,
+        element: (
+          <PrivateRoute>
+            <CropDetails></CropDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "createACrop",
+        element: (
+          <PrivateRoute>
+            <CreateACrop></CreateACrop>
+          </PrivateRoute>
+        ),
       },
     ],
   },

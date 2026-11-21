@@ -2,6 +2,7 @@ import React, { use, useEffect, useRef, useState } from "react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const CropDetails = () => {
   const { _id: cropId } = useLoaderData();
@@ -10,13 +11,17 @@ const CropDetails = () => {
   const { user } = use(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/crops/bids/${cropId}`)
+    fetch(`http://localhost:3000/crops/bids/${cropId}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log("bids for this crop", data);
         setBids(data);
       });
-  }, [cropId]);
+  }, [cropId, user]);
 
   const handleBidModalOpen = () => {
     bidModalRef.current.showModal();
@@ -26,7 +31,7 @@ const CropDetails = () => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     const bid = e.target.bid.value;
-     console.log(name, email, bid);
+    console.log(name, email, bid);
 
     const newBid = {
       crops: cropId,
@@ -142,7 +147,7 @@ const CropDetails = () => {
             <tbody>
               {/* row 1 */}
               {bids.map((bid, index) => (
-                <tr>
+                <tr key={bid._id}>
                   <th>{index + 1}</th>
                   <td>
                     <div className="flex items-center gap-3">

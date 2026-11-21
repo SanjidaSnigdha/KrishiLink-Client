@@ -21,10 +21,19 @@ const Navbar = () => {
       {user && (
         <>
           <li>
-            <NavLink className='text-[#065F46] font-bold' to="/myCrops">My Crops</NavLink>
+            <NavLink className="text-[#065F46] font-bold" to="/myCrops">
+              My Crops
+            </NavLink>
           </li>
           <li>
-            <NavLink className='text-[#065F46] font-bold' to="/myBids">My Bids</NavLink>
+            <NavLink className="text-[#065F46] font-bold" to="/myBids">
+              My Bids
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="text-[#065F46] font-bold" to="/createACrop">
+              Create A Crop
+            </NavLink>
           </li>
         </>
       )}
